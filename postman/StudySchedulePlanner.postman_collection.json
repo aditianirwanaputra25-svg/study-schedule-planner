@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "d7a85456-7773-43c1-9ce9-9157e1066c2f",
+    "name": "Study Schedule Planner API",
+    "description": "REST API untuk jadwal belajar dan tugas. Atur baseUrl dan ID resource di environment terlebih dahulu.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "mahasiswaId", "value": "1" },
+    { "key": "mataKuliahId", "value": "1" },
+    { "key": "jadwalId", "value": "1" },
+    { "key": "tugasId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Sistem",
+      "item": [
+        {
+          "name": "Health check",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/health" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Mahasiswa",
+      "item": [
+        {
+          "name": "Daftar mahasiswa",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Buat mahasiswa",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nim\": \"21114022610001\",\n  \"nama\": \"Mahasiswa Contoh\",\n  \"email\": null\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 201', function () { pm.response.to.have.status(201); });", "if (pm.response.code === 201) pm.environment.set('mahasiswaId', pm.response.json().data.id);"] } }]
+        },
+        {
+          "name": "Detail mahasiswa",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah mahasiswa",
+          "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nim\": \"21114022610001\",\n  \"nama\": \"Mahasiswa Diperbarui\",\n  \"email\": null\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Hapus mahasiswa",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Mata Kuliah",
+      "item": [
+        {
+          "name": "Daftar mata kuliah",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/mata-kuliah" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Buat mata kuliah",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"kode\": \"BD-101\",\n  \"nama\": \"Basis Data\"\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/mata-kuliah" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 201', function () { pm.response.to.have.status(201); });", "if (pm.response.code === 201) pm.environment.set('mataKuliahId', pm.response.json().data.id);"] } }]
+        },
+        {
+          "name": "Detail mata kuliah",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/mata-kuliah/{{mataKuliahId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah mata kuliah",
+          "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"kode\": \"BD-102\",\n  \"nama\": \"Basis Data Lanjut\"\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/mata-kuliah/{{mataKuliahId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Hapus mata kuliah",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/mata-kuliah/{{mataKuliahId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Jadwal Belajar",
+      "item": [
+        {
+          "name": "Daftar jadwal",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar?status=belum%20selesai" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Buat jadwal",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"topik\": \"Belajar ERD\",\n  \"tanggal\": \"2026-10-26\",\n  \"waktu_mulai\": \"09:00\",\n  \"waktu_selesai\": \"10:00\",\n  \"mata_kuliah_id\": {{mataKuliahId}}\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 201', function () { pm.response.to.have.status(201); });", "if (pm.response.code === 201) pm.environment.set('jadwalId', pm.response.json().data.id);"] } }]
+        },
+        {
+          "name": "Cek bentrok jadwal",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar/cek-bentrok?tanggal=2026-10-26&waktu_mulai=09:30&waktu_selesai=10:30&exclude_id={{jadwalId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Detail jadwal",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar/{{jadwalId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah jadwal",
+          "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"topik\": \"Belajar ERD revisi\",\n  \"tanggal\": \"2026-10-26\",\n  \"waktu_mulai\": \"10:00\",\n  \"waktu_selesai\": \"11:00\",\n  \"mata_kuliah_id\": {{mataKuliahId}}\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar/{{jadwalId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah status jadwal",
+          "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"status\":\"selesai\"}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar/{{jadwalId}}/status" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Hapus jadwal",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/jadwal-belajar/{{jadwalId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Tugas",
+      "item": [
+        {
+          "name": "Daftar tugas",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas?status=belum%20selesai" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Tugas mendekati deadline",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/mendekati-deadline?hari=3" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Buat tugas",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nama_tugas\": \"Laporan ERD\",\n  \"deadline\": \"2026-10-27T16:00\",\n  \"mata_kuliah_id\": {{mataKuliahId}},\n  \"deskripsi\": \"Contoh tugas\"\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 201', function () { pm.response.to.have.status(201); });", "if (pm.response.code === 201) pm.environment.set('tugasId', pm.response.json().data.id);"] } }]
+        },
+        {
+          "name": "Detail tugas",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah tugas",
+          "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nama_tugas\": \"Laporan ERD revisi\",\n  \"deadline\": \"2026-10-28T16:00\",\n  \"mata_kuliah_id\": {{mataKuliahId}},\n  \"deskripsi\": \"Diperbarui\"\n}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Ubah status tugas",
+          "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"status\":\"selesai\"}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}/status" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Hapus tugas",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Relasi Tugas-Jadwal",
+      "item": [
+        {
+          "name": "Daftar jadwal tugas",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}/jadwal" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        },
+        {
+          "name": "Hubungkan tugas ke jadwal",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"jadwal_id\":{{jadwalId}}}" }, "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}/jadwal" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 201', function () { pm.response.to.have.status(201); });"] } }]
+        },
+        {
+          "name": "Lepas relasi tugas-jadwal",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/tugas/{{tugasId}}/jadwal/{{jadwalId}}" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    },
+    {
+      "name": "Statistik",
+      "item": [
+        {
+          "name": "Rekap statistik",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/mahasiswa/{{mahasiswaId}}/statistik" } },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"] } }]
+        }
+      ]
+    }
+  ]
+}

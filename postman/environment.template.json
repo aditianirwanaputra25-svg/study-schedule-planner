@@ -1,0 +1,38 @@
+{
+  "id": "study-schedule-planner-local-template",
+  "name": "Study Schedule Planner - Template",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "mahasiswaId",
+      "value": "1",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "mataKuliahId",
+      "value": "1",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "jadwalId",
+      "value": "1",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "tugasId",
+      "value": "1",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_using": "Postman/Study Schedule Planner"
+}

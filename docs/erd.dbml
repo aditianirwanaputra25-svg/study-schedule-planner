@@ -1,0 +1,48 @@
+Table mahasiswa {
+  id int [pk, increment]
+  nim varchar(20) [not null, unique]
+  nama varchar(100) [not null]
+  email varchar(100) [unique]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table mata_kuliah {
+  id int [pk, increment]
+  mahasiswa_id int [not null, ref: > mahasiswa.id]
+  kode varchar(20) [not null]
+  nama varchar(100) [not null]
+
+  indexes {
+    (mahasiswa_id, kode) [unique]
+  }
+}
+
+Table jadwal_belajar {
+  id int [pk, increment]
+  mahasiswa_id int [not null, ref: > mahasiswa.id]
+  mata_kuliah_id int [ref: > mata_kuliah.id]
+  topik varchar(150) [not null]
+  tanggal date [not null]
+  waktu_mulai time [not null]
+  waktu_selesai time [not null]
+  status varchar(15) [not null, default: 'belum selesai']
+}
+
+Table tugas {
+  id int [pk, increment]
+  mahasiswa_id int [not null, ref: > mahasiswa.id]
+  mata_kuliah_id int [ref: > mata_kuliah.id]
+  nama_tugas varchar(150) [not null]
+  deskripsi text
+  deadline timestamp [not null]
+  status varchar(15) [not null, default: 'belum selesai']
+}
+
+Table tugas_jadwal {
+  tugas_id int [not null, ref: > tugas.id]
+  jadwal_id int [not null, ref: > jadwal_belajar.id]
+
+  indexes {
+    (tugas_id, jadwal_id) [pk]
+  }
+}
