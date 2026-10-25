@@ -448,22 +448,23 @@ Impor `postman/StudySchedulePlanner.postman_collection.json` ke Postman; koleksi
 ## Deployment Vercel
 
 API Study Schedule Planner telah berhasil di-deploy menggunakan Vercel dan dapat diakses secara online.
-URL Deployment: https://study-schedule-planner.vercel.app
-Health Check: GET /api/health
-Status API dan database: Berhasil diperiksa.
-Pengujian CRUD mahasiswa: Telah dilakukan menggunakan Thunder Client.
+
+- **URL Deployment:** https://study-schedule-planner.vercel.app
+- **Health Check:** `GET /api/health`
+- **Status API dan database:** Berhasil diperiksa.
+- **Pengujian CRUD mahasiswa:** Telah dilakukan menggunakan Thunder Client dengan hasil pengujian berhasil.
 
 Pengujian CRUD mahasiswa meliputi:
-GET — mengambil daftar mahasiswa.
-POST — menambahkan data mahasiswa.
-PUT — memperbarui data mahasiswa.
-DELETE — menghapus data mahasiswa.
+- **GET:** Mengambil daftar mahasiswa.
+- **POST:** Menambahkan data mahasiswa.
+- **PUT:** Memperbarui data mahasiswa.
+- **DELETE:** Menghapus data mahasiswa uji.
 
-Bukti pengujian tersedia di folder bukti-pengujian-api.
+Bukti pengujian tersedia di folder [`bukti-pengujian-api`](./bukti-pengujian-api).
 
 ## Tindakan Manual yang Masih Diperlukan
 
-Melanjutkan pengujian endpoint selain CRUD mahasiswa menggunakan Thunder Client.
-Menyimpan bukti pengujian untuk setiap endpoint yang telah diuji.
-Menjalankan pengujian collection Postman terhadap URL deployment jika diperlukan.
-(Opsional) Mengekspor gambar ERD dari dbdiagram.io menggunakan DBML.
+- Melanjutkan pengujian endpoint selain CRUD mahasiswa menggunakan Thunder Client.
+- Menyimpan bukti pengujian untuk setiap endpoint yang telah diuji.
+- Menjalankan pengujian collection Postman terhadap URL deployment jika diperlukan.
+- **Opsional:** Mengekspor gambar ERD dari dbdiagram.io menggunakan DBML.
