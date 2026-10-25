@@ -15,6 +15,17 @@ app.disable("x-powered-by");
 app.use(cors());
 app.use(express.json({ limit: "64kb" }));
 
+app.get("/", (_req, res) => {
+  res.json({
+    message: "Study Schedule Planner API",
+    status: "ok",
+    endpoints: {
+      health: "/api/health",
+      mahasiswa: "/api/mahasiswa"
+    }
+  });
+});
+
 app.get("/api/health", async (_req, res, next) => {
   try {
     await pool.query("SELECT 1");
