@@ -447,19 +447,23 @@ Impor `postman/StudySchedulePlanner.postman_collection.json` ke Postman; koleksi
 
 ## Deployment Vercel
 
-1. Buat PostgreSQL online di Neon atau Supabase dan ambil pooled connection string.
-2. Jalankan `npm run db:migrate` dengan `DATABASE_URL` yang menunjuk ke database online.
-3. Push folder proyek ini ke repository GitHub.
-4. Import repository ke Vercel dan pilih Node.js runtime yang didukung.
-5. Tambahkan `DATABASE_URL` dan `NODE_ENV=production` di Vercel Project Settings → Environment Variables. Jangan menambahkan `TEST_DATABASE_URL` atau `DATABASE_SSL=false` ke production.
-6. Deploy, lalu uji `GET {URL_DEPLOYMENT_ANDA}/api/health` dan jalankan Postman dengan `baseUrl` deployment.
+API Study Schedule Planner telah berhasil di-deploy menggunakan Vercel dan dapat diakses secara online.
+URL Deployment: https://study-schedule-planner.vercel.app
+Health Check: GET /api/health
+Status API dan database: Berhasil diperiksa.
+Pengujian CRUD mahasiswa: Telah dilakukan menggunakan Thunder Client.
 
-Express diekspor dari `src/app.ts` mengikuti integrasi Express Vercel saat ini. Deployment, database online, URL publik, dan pengujian Postman production **belum dilakukan** oleh proyek lokal ini.
+Pengujian CRUD mahasiswa meliputi:
+GET — mengambil daftar mahasiswa.
+POST — menambahkan data mahasiswa.
+PUT — memperbarui data mahasiswa.
+DELETE — menghapus data mahasiswa.
+
+Bukti pengujian tersedia di folder bukti-pengujian-api.
 
 ## Tindakan Manual yang Masih Diperlukan
 
-- Buat database online dan jalankan migrasi di database tersebut.
-- Push project ke GitHub dan deploy melalui Vercel.
-- Set environment variables di dashboard Vercel dan catat URL deployment yang benar.
-- Jalankan collection Postman terhadap URL publik dan simpan screenshot/bukti uji.
-- (Opsional) Ekspor gambar ERD dari dbdiagram.io menggunakan DBML.
+Melanjutkan pengujian endpoint selain CRUD mahasiswa menggunakan Thunder Client.
+Menyimpan bukti pengujian untuk setiap endpoint yang telah diuji.
+Menjalankan pengujian collection Postman terhadap URL deployment jika diperlukan.
+(Opsional) Mengekspor gambar ERD dari dbdiagram.io menggunakan DBML.
